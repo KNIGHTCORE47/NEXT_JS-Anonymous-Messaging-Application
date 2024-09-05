@@ -1,0 +1,1 @@
+export const DB_NAME = "Next_Js_Anonymous_Message_App"
