@@ -19,11 +19,13 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/dashbord', request.url))
     }
 
+
     //NOTE - check if not token exists and user is not authenticated then redirect to sign-in
     if (!token && currentUrl.pathname.startsWith('/dashbord')) {
         return NextResponse.redirect(new URL('/sign-in', request.url))
     }
 
+    //NOTE - if token exists then next
     return NextResponse.next()
 
 }
