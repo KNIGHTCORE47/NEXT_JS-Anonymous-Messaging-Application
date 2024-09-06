@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
         //NOTE - get user by its email
         const existingUserByEmail = await UserModel.findOne({ email });
 
-        const generateRandomOTP = Math.floor(100000 + Math.random() * 900000).toString();
+        let generateRandomOTP = Math.floor(100000 + Math.random() * 900000).toString();
 
         //NOTE - check if email already exists
         if (existingUserByEmail) {
