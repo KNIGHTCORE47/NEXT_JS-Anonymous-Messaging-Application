@@ -46,13 +46,18 @@ export async function POST(request: NextRequest) {
 
         }
 
+        //NOTE - Check if verification code is valid and has not expired yet
         const isCodeValid = user.verifyCode === pasrseCode.data.verifyCode
         const isCodeNotExpired = new Date(user.verifyCodeExpiry) > new Date()
 
         if (isCodeValid && isCodeNotExpired) {
+
+            //NOTE - Set user as verified
             user.isVerified = true
 
+            //NOTE - Save user to database as verified
             await user.save()
+
             return NextResponse.json(
                 {
                     success: true,
