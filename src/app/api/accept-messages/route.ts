@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: "Not authenticated"
+                message: "Not authenticated"
             },
             { status: 401 }
         )
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
         if (!updatedUserAcceptOrRejectMessges) return NextResponse.json(
             {
                 success: false,
-                error: "Error accepting messages"
+                message: "Error accepting messages"
             },
             { status: 401 }
         )
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: "Error accepting messages"
+                message: "Error accepting messages"
             },
             { status: 500 }
         )
@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: "Not authenticated"
+                message: "Not authenticated"
             },
             { status: 401 }
         )
@@ -93,7 +93,7 @@ export async function GET(request: NextRequest) {
         if (!verifiedUserWithId) return NextResponse.json(
             {
                 success: false,
-                error: "User not found"
+                message: "User not found"
             },
             { status: 404 }
         )
@@ -110,7 +110,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: "Error getting user status",
+                message: "Error getting user status",
             },
             { status: 500 }
         )

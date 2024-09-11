@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    error: "User not found"
+                    message: "User not found"
                 },
                 { status: 404 }
             )
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    error: "Invalid verification code format"
+                    message: "Invalid verification code format"
                 },
                 { status: 400 }
             )
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    error: "Verification code has expired"
+                    message: "Verification code has expired"
                 },
                 { status: 400 }
             )
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    error: "Invalid verification code"
+                    message: "Invalid verification code"
                 },
                 { status: 400 }
             )
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: "Error verifying user"
+                message: "Error verifying user"
             },
             { status: 500 }
         )

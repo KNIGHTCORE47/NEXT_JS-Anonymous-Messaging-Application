@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
         if (existingUserVerifiedByUsername) return NextResponse.json(
             {
                 success: false,
-                error: "Username already exists"
+                message: "Username already exists"
             }, { status: 400 }
         )
 
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
             if (existingUserByEmail.isVerified) return NextResponse.json(
                 {
                     success: false,
-                    error: "User already exists with this email",
+                    message: "User already exists with this email",
                 },
                 { status: 400 }
             )
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
         if (!emailResponse.success) return NextResponse.json(
             {
                 success: false,
-                error: emailResponse.message || "Error sending verification email",
+                message: emailResponse.message || "Error sending verification email",
             },
             { status: 500 }
         )

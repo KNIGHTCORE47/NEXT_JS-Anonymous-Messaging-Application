@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: "Not authenticated"
+                message: "Not authenticated"
             },
             { status: 401 }
         )
@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    error: "User not found"
+                    message: "User not found"
                 },
                 { status: 404 }
             )
@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: "An unexpected error occured"
+                message: "An unexpected error occured"
             },
             { status: 500 }
         )

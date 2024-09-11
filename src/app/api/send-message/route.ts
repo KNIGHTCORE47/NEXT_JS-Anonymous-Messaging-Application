@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    error: "User not found"
+                    message: "User not found"
                 },
                 { status: 404 }
             )
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    error: "User is not accepting the messages"
+                    message: "User is not accepting the messages"
                 },
                 { status: 403 }
             )
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: "Internal server error"
+                message: "Internal server error"
             },
             { status: 500 }
         )

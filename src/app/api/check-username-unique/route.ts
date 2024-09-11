@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    error: usernameErrors?.length > 0 ? usernameErrors.join(", ") : "Invalid query parameters"
+                    message: usernameErrors?.length > 0 ? usernameErrors.join(", ") : "Invalid query parameters"
                 }, { status: 400 }
             )
         }
@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    error: "Username is already taken"
+                    message: "Username is already taken"
                 },
                 { status: 400 }
             )
@@ -88,7 +88,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: "Error checking if username is unique"
+                message: "Error checking if username is unique"
             },
             { status: 500 }
         )
