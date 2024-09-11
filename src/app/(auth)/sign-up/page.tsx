@@ -158,7 +158,9 @@ export default function SignUpForm() {
 
                                 <FormItem>
 
-                                    <FormLabel>
+                                    <FormLabel
+                                        className='text-gray-100'
+                                    >
                                         Username
                                     </FormLabel>
 
@@ -206,7 +208,9 @@ export default function SignUpForm() {
 
                                 <FormItem>
 
-                                    <FormLabel>
+                                    <FormLabel
+                                        className='text-gray-100'
+                                    >
                                         Email
                                     </FormLabel>
 
@@ -221,7 +225,7 @@ export default function SignUpForm() {
                                     <FormDescription
                                         className='text-gray-400'
                                     >
-                                        This is your public display name.
+                                        This is your public email address.
                                     </FormDescription>
 
                                     <FormMessage />
@@ -238,7 +242,9 @@ export default function SignUpForm() {
 
                                 <FormItem>
 
-                                    <FormLabel>
+                                    <FormLabel
+                                        className='text-gray-100'
+                                    >
                                         Password
                                     </FormLabel>
 
