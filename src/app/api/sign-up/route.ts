@@ -110,11 +110,11 @@ export async function POST(request: NextRequest) {
 
     } catch (error) {
 
-        console.error("Error registering user", error);
+        console.error("Error parsing request body", error);
         return NextResponse.json(
             {
                 success: false,
-                message: "Error parsing request body"
+                message: "Error registering user please try again",
             },
             { status: 500 }
         );

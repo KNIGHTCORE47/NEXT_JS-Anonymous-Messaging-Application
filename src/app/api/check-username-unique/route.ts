@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
         if (!result.success) {
 
             //NOTE - Here usernameErrors will be an array
-            const usernameErrors = result.error.format().username?._errors || []
+            const usernameErrors = result.error.format().username?._errors || [];
 
             return NextResponse.json(
                 {

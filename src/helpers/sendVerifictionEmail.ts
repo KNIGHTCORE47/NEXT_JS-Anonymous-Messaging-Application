@@ -15,13 +15,19 @@ export async function sendVerifictionEmail(
             from: 'onboarding@resend.dev',
             to: email,
             subject: 'Anonymous Message App - Verification Code',
-            react: verificationEmail({ username, otp: verifyCode }),
+            react: verificationEmail({
+                username,
+                otp: verifyCode
+            }),
         });
 
         return { success: true, message: "Verification email sent successfully" }
     }
     catch (emailError) {
         console.log("Error sending verification email", emailError);
-        return { success: false, message: "Error sending verification email" }
+        return {
+            success: false,
+            message: "Error sending verification email"
+        }
     }
 }
