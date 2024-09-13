@@ -48,8 +48,7 @@ export default function MessageCard({ message, onMessageDelete }: messageCardPro
             title: response.data.message,
         })
 
-        //TODO - Wtite backend route to delete message
-        // onMessageDelete(message._id)
+        onMessageDelete(String(message._id))
     }
 
     return (
