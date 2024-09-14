@@ -101,8 +101,7 @@ export default function userDashboard() {
 
                     toast({
                         title: response.data.success?.toString() || "Refreshed messages",
-                        description: response.data.message || "Showing latest messages",
-                        variant: 'destructive'
+                        description: response.data.message || "Showing latest messages"
                     })
                 }
 
@@ -131,7 +130,7 @@ export default function userDashboard() {
         //NOTE - Here we call the fetchMessages function to get all the messages
         fetchMessages();
 
-    }, [session, setValue, fetchAcceptMessages, fetchMessages])
+    }, [session, setValue, fetchAcceptMessages, fetchMessages, toast])
 
     //NOTE - Here we handle switching of the button on/off with handleSwitchChange function/method
     async function handleSwitchChange() {
@@ -159,7 +158,21 @@ export default function userDashboard() {
         }
     }
 
-    const { username } = session?.user as User
+    if (!session || !session.user) {
+        return (
+            <div>
+                Please Login <Link
+                    className="text-blue-500 hover:text-blue-700 underline"
+                    href="/sign-in"
+                >
+                    Click Here!!
+                </Link>
+            </div>
+        )
+
+    }
+
+    const { username } = session.user as User
 
     const baseUrl = `${window.location.protocol}//${window.location.host}`
 
@@ -173,22 +186,6 @@ export default function userDashboard() {
             description: "Link copied to clipboard",
             variant: 'default'
         })
-    }
-
-
-
-    if (!session || !session?.user) {
-        return (
-            <div>
-                Please Login <Link
-                    className="text-blue-500 hover:text-blue-700 underline"
-                    href="/sign-in"
-                >
-                    Click Here!!
-                </Link>
-            </div>
-        )
-
     }
 
 

@@ -21,10 +21,10 @@ export const authOptions: NextAuthOptions = {
                     //NOTE - check if user with username or email credentials exists
                     const signInUser = await UserModel.findOne({
                         $or: [
-                            { email: credentials.identifier.email },
-                            { username: credentials.identifier.username }
+                            { email: credentials.identifier },
+                            { username: credentials.username }
                         ]
-                    })
+                    });
 
                     //NOTE - check if user is not exists
                     if (!signInUser) {
@@ -39,15 +39,12 @@ export const authOptions: NextAuthOptions = {
                     //NOTE - check if password is valid by comparing hashed password with user given password
                     const isPasswordValid = await bcryptjs.compare(credentials.password, signInUser.password);
 
-                    //NOTE - check if password is not valid
-                    if (!isPasswordValid) {
-                        throw new Error("Incorrect password");
+                    //NOTE - check if password is valid or not
+                    if (isPasswordValid) {
+                        return signInUser;
+                    } else {
+                        throw new Error('Incorrect password');
                     }
-
-                    return {
-                        user: signInUser
-                    };
-
 
                 } catch (error: any) {
                     throw new Error("Invalid email address", error);
@@ -56,15 +53,6 @@ export const authOptions: NextAuthOptions = {
         })
     ],
     callbacks: {
-        async session({ session, token }) {
-            if (token) {
-                session.user._id = token._id
-                session.user.username = token.username
-                session.user.isVerified = token.isVerified
-                session.user.isAcceptingMessages = token.isAcceptingMessages
-            }
-            return session
-        },
         async jwt({ token, user }) {
             if (user) {
                 token._id = user._id?.toString();
@@ -73,6 +61,15 @@ export const authOptions: NextAuthOptions = {
                 token.isAcceptingMessages = user.isAcceptingMessages
             }
             return token
+        },
+        async session({ session, token }) {
+            if (token) {
+                session.user._id = token._id
+                session.user.username = token.username
+                session.user.isVerified = token.isVerified
+                session.user.isAcceptingMessages = token.isAcceptingMessages
+            }
+            return session
         }
     },
     pages: {

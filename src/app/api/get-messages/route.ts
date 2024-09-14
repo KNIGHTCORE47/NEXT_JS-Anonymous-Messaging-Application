@@ -10,13 +10,13 @@ export async function GET(request: NextRequest) {
     await dbConnect();
 
     //NOTE - Find user with userId from Session
-    const session = await getServerSession(authOptions)
+    const session = await getServerSession(authOptions);
 
     //NOTE - Check user derived from session.user
-    const user: User = session?.user
+    const _user: User = session?.user;
 
     //NOTE - check if user is authenticated
-    if (!session || !session?.user) {
+    if (!session || !_user) {
         return NextResponse.json(
             {
                 success: false,
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
     }
 
     //NOTE - Get userId from user and parse it through mongoose objectId to avoid common string error casuse it will be used in mongDB aggrigation pipeline
-    const userId = new mongoose.Types.ObjectId(user._id);
+    const userId = new mongoose.Types.ObjectId(_user._id);
 
     try {
 
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
                     }
                 }
             ]
-        )
+        ).exec();
 
         console.log("User with all messages ", userWithAllMessages);
 
@@ -86,6 +86,5 @@ export async function GET(request: NextRequest) {
             },
             { status: 500 }
         )
-
     }
 }
