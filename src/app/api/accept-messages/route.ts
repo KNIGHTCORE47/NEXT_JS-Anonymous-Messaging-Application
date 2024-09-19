@@ -36,13 +36,15 @@ export async function POST(request: NextRequest) {
             { new: true }
         )
 
-        if (!updatedUserAcceptOrRejectMessges) return NextResponse.json(
-            {
-                success: false,
-                message: "Error accepting messages"
-            },
-            { status: 401 }
-        )
+        if (!updatedUserAcceptOrRejectMessges) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Error accepting messages"
+                },
+                { status: 401 }
+            )
+        }
 
         return NextResponse.json(
             {
